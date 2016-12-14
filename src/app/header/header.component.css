@@ -1,0 +1,43 @@
+.header {
+  font-size: 14px;
+  font-weight: 200;
+  background: rgba(0,0,0,0.5);
+}
+
+.header-logo {
+  margin: 16px;
+}
+
+.header-menu {
+  position: absolute;
+  right: 20px;
+  top: 28px;
+}
+
+.header-menu-item {
+  border-left: 1px solid white;
+  display: inline-block;
+  padding: 0 12px;
+}
+
+.header-menu-item:first-child {
+  border-left: none;
+}
+
+.header-menu-item a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-menu-item img {
+  padding-bottom: 3px;
+}
+
+.header-menu-item a:hover {
+  opacity: 0.7;
+}
+
+.header-menu-item b {
+  color: #FF8300;
+  font-weight: 600;
+}

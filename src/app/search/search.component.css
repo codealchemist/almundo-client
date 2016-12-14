@@ -1,0 +1,22 @@
+.search-container {
+  text-align: center;
+}
+
+.search {
+  color: #eee;
+  padding: 0 20px;
+  width: 60%;
+  display: inline-block;
+  background: rgba(0,0,0,0.5);
+  margin-top: 100px;
+  border-radius: 5px;
+}
+
+.search-wrapper {
+  overflow: hidden;
+  padding: 20px 10px;
+}
+
+.search-input {
+  width: 100%;
+}

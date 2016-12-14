@@ -1,0 +1,28 @@
+.menu {
+  background: rgba(0,0,0,0.3);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+}
+
+.menu-item {
+  display: inline-block;
+}
+
+.menu-item a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 15px;
+  display: inline-block;
+  transition: all 500ms;
+}
+
+.menu-item a:hover {
+  background: rgba(0,0,0,0.4)
+}
+
+.menu-item .material-icons {
+  font-size: 14px;
+  display: inline;
+  vertical-align: middle;
+}

@@ -1,0 +1,24 @@
+<!-- search box shown when no results are available -->
+<div class="search-container" *ngIf="!initialized">
+  <div class="search">
+    <div class="search-wrapper">
+      <md-input
+        class="search-input"
+        placeholder="Buscar Hotel"
+        align="start"
+        [(ngModel)]="terms"
+        (keypress)="searchOnKey($event.keyCode)"
+      ></md-input>
+
+      <p>* Search results are mocked on the backend, so any search terms will return the same data.</p>
+    </div>
+  </div>
+</div>
+
+<app-results
+  [entity]="entity"
+  [results]="results"
+  [terms]="terms"
+  [filter]="filter"
+  *ngIf="initialized"
+></app-results>

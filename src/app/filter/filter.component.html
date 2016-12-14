@@ -1,0 +1,135 @@
+<div class="filter">
+  <h4>Filtrar</h4>
+
+  <div class="filter-item">
+    <h4 class="link" (click)="nameFilterCollapsed = !nameFilterCollapsed">
+      <i class="icon icon-len"></i> Nombre del Hotel
+      <i
+        class="action"
+        [ngClass]="{'icon-up': !nameFilterCollapsed, 'icon-down': nameFilterCollapsed}"
+      ></i>
+    </h4>
+
+    <div class="form-inline" *ngIf="!nameFilterCollapsed">
+      <div class="form-group form-group-sm">
+        <input
+          type="text"
+          class="form-control"
+          id="filter-by-name"
+          placeholder="Nombre del hotel"
+          [(ngModel)]="filter.name"
+          (keypress)="filterByNameOnKey($event.keyCode)"
+        >
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="applyFilter()"
+        >Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-item">
+    <h4><i class="icon icon-peso"></i> Precio por noche</h4>
+
+    <div class="form-inline">
+      <div class="form-group form-group-sm">
+        <span>Min</span>
+        <md-slider
+          [min]="priceMin"
+          [max]="priceMax"
+          step="100"
+          [(ngModel)]="filter.priceMin"
+          [value]="priceMin"
+        ></md-slider>
+        <span>AR$ {{filter.priceMin || priceMin | number}}</span>
+        <br>
+
+        <span>Max</span>
+        <md-slider
+          [min]="priceMin"
+          [max]="priceMax"
+          step="100"
+          [(ngModel)]="filter.priceMax"
+          [value]="priceMax"
+        ></md-slider>
+        <span>AR$ {{filter.priceMax || priceMax | number}}</span>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="applyFilter()"
+        >Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-item">
+    <h4><i class="icon icon-star"></i> Estrellas</h4>
+
+    <div class="form">
+      <div class="form-group form-group-sm">
+        <div class="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              [(ngModel)]="starsAll"
+              (change)="allStarsChanged()"
+            > Todas las estrellas
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              [(ngModel)]="stars5"
+              (change)="starsChanged()"
+            > <app-stars [value]="5"></app-stars>
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              [(ngModel)]="stars4"
+              (change)="starsChanged()"
+            > <app-stars [value]="4"></app-stars>
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              [(ngModel)]="stars3"
+              (change)="starsChanged()"
+            > <app-stars [value]="3"></app-stars>
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              [(ngModel)]="stars2"
+              (change)="starsChanged()"
+            > <app-stars [value]="2"></app-stars>
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              [(ngModel)]="stars1"
+              (change)="starsChanged()"
+            > <app-stars [value]="1"></app-stars>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

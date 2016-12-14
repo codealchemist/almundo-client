@@ -1,0 +1,32 @@
+.filter {
+
+}
+
+.filter-item {
+  position: relative;
+  background: white;
+  padding: 10px;
+  margin-bottom: 3px;
+}
+
+.filter-item p,
+.filter-item label {
+  font-size: 12px;
+}
+
+.filter-item h4 {
+  color: #1a99df;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filter-item h4.link {
+  cursor: pointer;
+}
+
+.filter-item .action {
+  position: absolute;
+  right: 26px;
+  top: 22px;
+  display: block;
+}
