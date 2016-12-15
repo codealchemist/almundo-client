@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Http, Response, URLSearchParams } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
+import { environment } from '../../environments/environment'
 
 @Injectable()
 export class SearchService {
@@ -8,8 +9,13 @@ export class SearchService {
   constructor(private http: Http) { }
 
   search (terms, entity, filter) {
+    // temporal hack
+    if (location.hostname !== 'localhost') {
+      environment.searchUrl = '//almundo-server.herokuapp.com'
+    }
+
     entity = entity || 'hotel'
-    let url = `//localhost:3080/${entity}/search?terms=${terms}`
+    let url = `${environment.searchUrl}/${entity}/search?terms=${terms}`
 
     // console.log('-- search filter', filter)
     if (filter.name) url += `&name=${filter.name}`
