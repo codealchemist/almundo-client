@@ -4,6 +4,10 @@
 
 `npm install`
 
+The project uses [angular-cli](https://github.com/angular/angular-cli), so you'll need to install it:
+
+`npm install -g angular-cli`
+
 
 ## Run
 
@@ -13,6 +17,10 @@
 ## Run Tests
 
 `npm test`
+
+## Build
+
+`npm run build`
 
 
 ## Author

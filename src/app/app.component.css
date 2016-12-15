@@ -1,5 +1,5 @@
 .app-container {
-  background-image: url('./app/home.jpg');
+  background-image: url('/assets/home.jpg');
   background-size: cover;
   position: absolute;
   top: 0;
