@@ -12,6 +12,7 @@ export class ResultsComponent implements OnInit {
   @Input() terms = ''
   @Input() filter = {}
   @Input() results = []
+  @Input() searching = true
 
   constructor(
     private serviceIconMap: ServiceIconMap

@@ -2,11 +2,12 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { SearchService } from './search.service';
+import {Http, Response, ResponseOptions, ConnectionBackend} from '@angular/http'
 
 describe('SearchService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SearchService]
+      providers: [SearchService, Http, ConnectionBackend]
     });
   });
 

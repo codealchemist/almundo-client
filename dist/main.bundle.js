@@ -633,6 +633,7 @@ var ResultsComponent = (function () {
         this.terms = '';
         this.filter = {};
         this.results = [];
+        this.searching = true;
     }
     ResultsComponent.prototype.ngOnInit = function () {
     };
@@ -655,6 +656,10 @@ var ResultsComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
         __metadata('design:type', Object)
     ], ResultsComponent.prototype, "results", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(), 
+        __metadata('design:type', Object)
+    ], ResultsComponent.prototype, "searching", void 0);
     ResultsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-results',
@@ -933,14 +938,14 @@ module.exports = "<p>\n  minimap works!\n</p>\n"
 /***/ 860:
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"results-filler container\">\n  <div class=\"results-status row\" [ngClass]=\"{'disabled': !results.length}\">\n    <div class=\"col-md-12\">\n      <h4>Hoteles disponibles para:</h4>\n      <p><i class=\"glyphicon glyphicon-map-marker\"></i> madrid</p>\n      <p><i class=\"glyphicon glyphicon-calendar\"></i> (check-in)</p>\n      <p><i class=\"glyphicon glyphicon-calendar\"></i> (check-out)</p>\n      <p><i class=\"glyphicon glyphicon-user\"></i> 2 huéspedes</p>\n      <a href=\"\">Modificar búsqueda</a>\n    </div>\n  </div>\n\n  <div class=\"results-container row\">\n    <div class=\"col-md-3\">\n      <app-filter\n        [entity]=\"entity\"\n        [terms]=\"terms\"\n        [filter]=\"filter\"\n      ></app-filter>\n    </div>\n\n    <div class=\"col-md-9\">\n      <!-- NO RESULTS -->\n      <div class=\"row\" *ngIf=\"!results.length\">\n        <div class=\"no-results\">\n          <h3>NO HAY RESULTADOS.</h3>\n          <h5>Pruebe otros criterios de búsqueda.</h5>\n        </div>\n      </div>\n\n      <!-- RESULTS -->\n      <div class=\"result-item row\" *ngFor=\"let result of results\">\n        <div class=\"result-image col-md-3\"></div>\n\n        <div class=\"result-data col-md-6\">\n          <h5 class=\"result-name\">{{result.name}}</h5>\n          <div class=\"result-stars\">\n            <app-stars [value]=\"result.stars\"></app-stars>\n          </div>\n          <span class=\"result-services\" *ngFor=\"let serviceId of result.services\">\n            <span class=\"result-service\" [className]=\"getServiceIconClass(serviceId)\"></span>\n          </span>\n        </div>\n\n        <div class=\"result-price-container col-md-3\">\n          <p>Precio por noche por habitación</p>\n\n          <div class=\"result-price-data\">\n            <span class=\"result-price-currency\">{{result.price.currency}}</span>\n            <span class=\"result-price-amount\">{{result.price.amount | number}}</span>\n          </div>\n\n          <p>Impuestos y tasas no incluidos</p>\n        </div>\n      </div>\n      <!-- RESULTS -->\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"results-filler container\">\n  <div class=\"results-status row\" [ngClass]=\"{'disabled': !results.length}\">\n    <div class=\"col-md-12\">\n      <h4>Hoteles disponibles para:</h4>\n      <p><i class=\"glyphicon glyphicon-map-marker\"></i> madrid</p>\n      <p><i class=\"glyphicon glyphicon-calendar\"></i> (check-in)</p>\n      <p><i class=\"glyphicon glyphicon-calendar\"></i> (check-out)</p>\n      <p><i class=\"glyphicon glyphicon-user\"></i> 2 huéspedes</p>\n      <a href=\"\">Modificar búsqueda</a>\n    </div>\n  </div>\n\n  <div class=\"results-container row\">\n    <div class=\"col-md-3\">\n      <app-filter\n        [entity]=\"entity\"\n        [terms]=\"terms\"\n        [filter]=\"filter\"\n      ></app-filter>\n    </div>\n\n    <div class=\"col-md-9\">\n      <!-- LOADING -->\n      <div class=\"row\" *ngIf=\"searching\">\n        <div class=\"no-results\">\n          <h3>CARGANDO...</h3>\n          <h5>En breve tendremos una respuesta.</h5>\n        </div>\n      </div>\n\n      <!-- NO RESULTS -->\n      <div class=\"row\" *ngIf=\"!searching && !results.length\">\n        <div class=\"no-results\">\n          <h3>NO HAY RESULTADOS.</h3>\n          <h5>Pruebe otros criterios de búsqueda.</h5>\n        </div>\n      </div>\n\n      <!-- RESULTS -->\n      <div *ngIf=\"!searching\">\n        <div class=\"result-item row\" *ngFor=\"let result of results\">\n          <div class=\"result-image col-md-3\"></div>\n\n          <div class=\"result-data col-md-6\">\n            <h5 class=\"result-name\">{{result.name}}</h5>\n            <div class=\"result-stars\">\n              <app-stars [value]=\"result.stars\"></app-stars>\n            </div>\n            <span class=\"result-services\" *ngFor=\"let serviceId of result.services\">\n              <span class=\"result-service\" [className]=\"getServiceIconClass(serviceId)\"></span>\n            </span>\n          </div>\n\n          <div class=\"result-price-container col-md-3\">\n            <p>Precio por noche por habitación</p>\n\n            <div class=\"result-price-data\">\n              <span class=\"result-price-currency\">{{result.price.currency}}</span>\n              <span class=\"result-price-amount\">{{result.price.amount | number}}</span>\n            </div>\n\n            <p>Impuestos y tasas no incluidos</p>\n          </div>\n        </div>\n      </div>\n      <!-- RESULTS -->\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 
 /***/ 861:
 /***/ function(module, exports) {
 
-module.exports = "<!-- search box shown when no results are available -->\n<div class=\"search-container\" *ngIf=\"!initialized\">\n  <div class=\"search\">\n    <div class=\"search-wrapper\">\n      <md-input\n        class=\"search-input\"\n        placeholder=\"Buscar Hotel\"\n        align=\"start\"\n        [(ngModel)]=\"terms\"\n        (keypress)=\"searchOnKey($event.keyCode)\"\n      ></md-input>\n\n      <p>* Search results are mocked on the backend, so any search terms will return the same data.</p>\n    </div>\n  </div>\n</div>\n\n<app-results\n  [entity]=\"entity\"\n  [results]=\"results\"\n  [terms]=\"terms\"\n  [filter]=\"filter\"\n  *ngIf=\"initialized\"\n></app-results>\n"
+module.exports = "<!-- search box shown when no results are available -->\n<div class=\"search-container\" *ngIf=\"!initialized\">\n  <div class=\"search\">\n    <div class=\"search-wrapper\">\n      <md-input\n        class=\"search-input\"\n        placeholder=\"Buscar Hotel\"\n        align=\"start\"\n        [(ngModel)]=\"terms\"\n        (keypress)=\"searchOnKey($event.keyCode)\"\n      ></md-input>\n\n      <p>* Search results are mocked on the backend, so any search terms will return the same data.</p>\n    </div>\n  </div>\n</div>\n\n<app-results\n  [entity]=\"entity\"\n  [results]=\"results\"\n  [terms]=\"terms\"\n  [filter]=\"filter\"\n  [searching]=\"searching\"\n  *ngIf=\"initialized\"\n></app-results>\n"
 
 /***/ },
 

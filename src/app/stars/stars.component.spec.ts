@@ -25,4 +25,8 @@ describe('StarsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should return a range', () => {
+    expect(component.range(5).length).toBe(5)
+  })
 });

@@ -20,8 +20,16 @@
     </div>
 
     <div class="col-md-9">
+      <!-- LOADING -->
+      <div class="row" *ngIf="searching">
+        <div class="no-results">
+          <h3>CARGANDO...</h3>
+          <h5>En breve tendremos una respuesta.</h5>
+        </div>
+      </div>
+
       <!-- NO RESULTS -->
-      <div class="row" *ngIf="!results.length">
+      <div class="row" *ngIf="!searching && !results.length">
         <div class="no-results">
           <h3>NO HAY RESULTADOS.</h3>
           <h5>Pruebe otros criterios de búsqueda.</h5>
@@ -29,28 +37,30 @@
       </div>
 
       <!-- RESULTS -->
-      <div class="result-item row" *ngFor="let result of results">
-        <div class="result-image col-md-3"></div>
+      <div *ngIf="!searching">
+        <div class="result-item row" *ngFor="let result of results">
+          <div class="result-image col-md-3"></div>
 
-        <div class="result-data col-md-6">
-          <h5 class="result-name">{{result.name}}</h5>
-          <div class="result-stars">
-            <app-stars [value]="result.stars"></app-stars>
-          </div>
-          <span class="result-services" *ngFor="let serviceId of result.services">
-            <span class="result-service" [className]="getServiceIconClass(serviceId)"></span>
-          </span>
-        </div>
-
-        <div class="result-price-container col-md-3">
-          <p>Precio por noche por habitación</p>
-
-          <div class="result-price-data">
-            <span class="result-price-currency">{{result.price.currency}}</span>
-            <span class="result-price-amount">{{result.price.amount | number}}</span>
+          <div class="result-data col-md-6">
+            <h5 class="result-name">{{result.name}}</h5>
+            <div class="result-stars">
+              <app-stars [value]="result.stars"></app-stars>
+            </div>
+            <span class="result-services" *ngFor="let serviceId of result.services">
+              <span class="result-service" [className]="getServiceIconClass(serviceId)"></span>
+            </span>
           </div>
 
-          <p>Impuestos y tasas no incluidos</p>
+          <div class="result-price-container col-md-3">
+            <p>Precio por noche por habitación</p>
+
+            <div class="result-price-data">
+              <span class="result-price-currency">{{result.price.currency}}</span>
+              <span class="result-price-amount">{{result.price.amount | number}}</span>
+            </div>
+
+            <p>Impuestos y tasas no incluidos</p>
+          </div>
         </div>
       </div>
       <!-- RESULTS -->
